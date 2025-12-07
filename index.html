@@ -312,7 +312,7 @@
 
         <div class="activity-block">
             <input type="checkbox" id="act3-7-toggle" class="toggle-checkbox">
-            <label for="act3-7-toggle" class="activity-label">▶ Actividad 3.7</label>
+            <label for="act3-7-toggle" class="activity-label" onclick="checkAndInitializeJobBoard()">▶ Actividad 3.7</label>
             
             <div class="activity-content job-board-app-container">
                 
@@ -413,6 +413,15 @@
 
         render();
     }
+    
+    // FUNCIÓN AGREGADA PARA FORZAR RENDERIZADO EN EL ACORDEÓN LOCAL
+    function checkAndInitializeJobBoard() {
+        const isChecked = document.getElementById('act3-7-toggle').checked;
+        if (!isChecked) {
+            showTab('job-list'); 
+        }
+    }
+
 
     document.addEventListener('DOMContentLoaded', () => {
         const form = document.getElementById('post-job-form');
@@ -447,6 +456,7 @@
         window.showTab = showTab;
         window.handleJobApproval = handleJobApproval;
         window.handleCandidateDecision = handleCandidateDecision;
+        window.checkAndInitializeJobBoard = checkAndInitializeJobBoard; // Hacer la función global
         
         showTab(currentTab); 
     });
