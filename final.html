@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Único - Aplicaciones Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f9; color: #333; }
+        .portafolio-container { max-width: 1200px; margin: 20px auto; padding: 20px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        
+        .header { background-color: #4f46e5; color: white; padding: 30px 20px; text-align: center; border-radius: 8px 8px 0 0; }
+        .header h1 { margin: 0 0 5px 0; font-size: 2.5em; }
+        .nav-bar { display: flex; justify-content: center; background-color: #3f39cc; padding: 10px 0; }
+        .nav-bar a { color: white; text-decoration: none; padding: 10px 20px; margin: 0 5px; border-radius: 5px; font-weight: bold; }
+        
+        .unit-section { padding: 20px; margin-top: 30px; border-top: 5px solid #4f46e5; }
+        .unit-section h2 { color: #4f46e5; border-bottom: 2px solid #ddd; padding-bottom: 10px; margin-bottom: 20px; }
+        .activity-block { margin-bottom: 20px; border-left: 5px solid #10b981; }
+        .activity-label { display: block; padding: 15px; background-color: #e6ffed; border: 1px solid #10b981; cursor: pointer; font-weight: bold; margin: 5px 0; }
+        
+        .activity-content { display: none; padding: 15px; border: 1px solid #ddd; border-top: none; }
+        .toggle-checkbox { display: none; }
+        .toggle-checkbox:checked + .activity-label + .activity-content { display: block; }
+        .activity-label::before { content: '▶ '; }
+        .toggle-checkbox:checked + .activity-label::before { content: '▼ '; }
+        
+        .app-viewer { 
+            width: 100%; 
+            height: 650px; 
+            border: 3px solid #4f46e5; 
+            border-radius: 5px; 
+            margin: 20px 0; 
+        }
+        
+        .code-container { margin-top: 10px; background-color: #272822; color: #f8f8f2; padding: 15px; border-radius: 5px; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        
+        .job-board-app-container {
+            padding: 20px;
+            background-color: #f8f9fa; 
+            color: #213547;
+        }
+        .job-board-nav {
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 15px;
+        }
+        .job-board-nav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #495057;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+            cursor: pointer; 
+        }
+        .job-board-nav a:hover, .job-board-nav a.active {
+            border-bottom: 3px solid #0d6efd;
+            color: #0d6efd;
+        }
+        .job-board-nav a.admin { color: #dc3545; }
+        .job-board-nav a.admin:hover { border-bottom: 3px solid #dc3545; }
+
+        .tab-content > div { display: none; }
+        .tab-content > div.active { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="portafolio-container">
+    <div class="header">
+        <h1>Portafolio de Actividades: Aplicaciones Web</h1>
+    </div>
+
+    <div class="nav-bar">
+        <a href="#unidad-1">Unidad 1</a>
+        <a href="#unidad-2">Unidad 2</a>
+        <a href="#unidad-3">Unidad 3</a>
+    </div>
+
+    <div id="unidad-1" class="unit-section">
+        <h2>Unidad 1</h2>
+
+        <div class="activity-block">
+            <input type="checkbox" id="act1-1-toggle" class="toggle-checkbox">
+            <label for="act1-1-toggle" class="activity-label">Ver Actividad 1.1</label>
+            
+            <div class="activity-content">
+                <iframe class="app-viewer" srcdoc="
+                    <!DOCTYPE html>
+                    <html lang=&quot;es&quot;>
+                    <head>
+                        <meta charset=&quot;UTF-8&quot;>
+                        <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+                        <title>Netflix - Iniciar sesión</title>
+                        <style>
+                            body {
+                                font-family: sans-serif;
+                                margin: 0; padding: 0; color: #fff; background-color: #000;
+                                min-height: 100vh;
+                            }
+                            .background-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.75); z-index: 1; }
+                            .header { position: relative; z-index: 2; padding: 20px 50px; }
+                            .logo {
+                                background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjE1MHB4IiBoZWlnaHQ9IjYwcHgiIHZpZXdCb3g9IjAgMCAxMDAwIDMwMCIgdmVycmlvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDx0aXRsZT5ORVRGTElYPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPHAgZmlsbD0iI0U1ODQwMSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNzk0LjcxOCwzMDAgTDE5Ni43MzgsMzAwIEwzOTcuMTg4LDAgTDc5NC43MTgsMCBMNzk0LjcxOCwzMDAgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjk2Ljk1MDQ4NSwgMTUwLjAwMDAwMCkgcm90YXRlKDE1LjAwMDAwMCkgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI5Ni45NTA0ODUsIC0xNTAuMDAwMDAwKSkiPjwvcGF0aD48L3N2Zz4=') no-repeat center;
+                                background-size: contain;
+                                width: 150px;
+                                height: 50px;
+                                display: block;
+                            }
+
+                            .main-content { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; min-height: 500px; padding: 0 50px; } 
+                            .login-container { 
+                                background-color: rgba(0, 0, 0, 0.85); 
+                                padding: 60px 68px 40px; 
+                                border-radius: 4px; 
+                                width: 350px; 
+                                box-shadow: 0 0 15px rgba(0,0,0,0.5);
+                            }
+                            .login-form .input-group { position: relative; margin-bottom: 25px; } 
+                            .login-form input { 
+                                width: 100%; padding: 16px 20px; background-color: #333; border: none; border-radius: 4px; color: #fff; font-size: 1em; 
+                            }
+                            .login-form label { 
+                                position: absolute; top: 18px; left: 20px; color: #8c8c8c; font-size: 1em; transition: all 0.2s ease-in-out; pointer-events: none; 
+                                line-height: 16px; 
+                            }
+                            .login-form input:focus + label, .login-form input:valid + label { top: 8px; font-size: 0.7em; }
+                            .login-button { width: 100%; padding: 16px; background-color: #e50914; color: #fff; border: none; border-radius: 4px; font-weight: bold; margin-top: 20px; }
+                        </style>
+                        <link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+                        <link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+                        <link href=&quot;https://fonts.googleapis.com/css2?family=Netflix+Sans:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+                    </head>
+                    <body>
+                        <div class=&quot;background-overlay&quot;></div>
+                        <header class=&quot;header&quot;>
+                            <a href=&quot;#&quot;><div class=&quot;logo&quot; title=&quot;Netflix&quot;></div></a>
+                        </header>
+                        <main class=&quot;main-content&quot;>
+                            <div class=&quot;login-container&quot;>
+                                <h1>Iniciar sesión</h1>
+                                <form class=&quot;login-form&quot;>
+                                    <div class=&quot;input-group&quot;>
+                                        <input type=&quot;text&quot; id=&quot;email&quot; required>
+                                        <label for=&quot;email&quot;>Email o número de celular</label>
+                                    </div>
+                                    <div class=&quot;input-group&quot;>
+                                        <input type=&quot;password&quot; id=&quot;password&quot; required>
+                                        <label for=&quot;password&quot;>Contraseña</label>
+                                    </div>
+                                    <button type=&quot;submit&quot; class=&quot;login-button&quot;>Iniciar sesión</button>
+                                </form>
+                            </div>
+                        </main>
+                        <footer class=&quot;footer&quot;>...</footer>
+                    </body>
+                    </html>
+                "></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <div id="unidad-2" class="unit-section">
+        <h2>Unidad 2</h2>
+
+        <div class="activity-block">
+            <input type="checkbox" id="act2-1-toggle" class="toggle-checkbox">
+            <label for="act2-1-toggle" class="activity-label">Ver Actividad 2.1</label>
+            
+            <div class="activity-content">
+                <iframe class="app-viewer" srcdoc="
+                    <!DOCTYPE html>
+                    <html lang=&quot;es&quot;>
+                    <head>
+                        <meta charset=&quot;UTF-8&quot;>
+                        <title>Tabla de Multiplicar</title>
+                        <style>
+                            body { font-family: sans-serif; text-align: center; background-color: #a082b9; }
+                            h1 { color: green; }
+                            .input-section { padding: 10px; border: 1px solid #ccc; display: inline-block; }
+                            .header-row, .data-row {
+                                display: grid; grid-template-columns: 1fr 1fr 1fr; width: 300px; margin: 0 auto; border: 1px solid black;
+                            }
+                            .header-row { font-weight: bold; background-color: #ddd; }
+                            .data-row { background-color: #eee; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class=&quot;container&quot;>
+                            <h1>TABLA DE MULTIPLICAR</h1>
+                            <div class=&quot;input-section&quot;>
+                                <label for=&quot;numero&quot;>Ingrese el número que quiere multiplicar:</label>
+                                <input type=&quot;number&quot; id=&quot;numero&quot; value=&quot;15&quot;>
+                                <label for=&quot;veces&quot;>Ingrese las veces que se multiplicará:</label>
+                                <input type=&quot;number&quot; id=&quot;veces&quot; value=&quot;10&quot;>
+                                <button onclick=&quot;mostrarTabla()&quot;>Mostrar</button>
+                            </div>
+                            <div class=&quot;result-section&quot;>
+                                <h2>SU RESULTADO ES:</h2>
+                                <div id=&quot;resultado-tabla&quot; class=&quot;tabla-container&quot;></div>
+                            </div>
+                        </div>
+                        <script>
+                            function mostrarTabla() {
+                                const numero = parseInt(document.getElementById('numero').value);
+                                const veces = parseInt(document.getElementById('veces').value);
+                                const resultadoTabla = document.getElementById('resultado-tabla');
+                                resultadoTabla.innerHTML = '';
+                                if (isNaN(numero) || isNaN(veces) || numero < 1 || veces < 1) { return; }
+
+                                const header = '<div class=&quot;header-row&quot;><span>Número</span><span>Multiplicador</span><span>Resultado</span></div>';
+                                resultadoTabla.innerHTML += header;
+
+                                for (let i = 1; i <= veces; i++) {
+                                    const resultado = numero * i;
+                                    const fila = '<div class=&quot;data-row&quot;><span>' + numero + '</span><span>' + i + '</span><span>' + resultado + '</span></div>';
+                                    resultadoTabla.innerHTML += fila;
+                                }
+                            }
+                            document.addEventListener('DOMContentLoaded', mostrarTabla);
+                        </script>
+                    </body>
+                    </html>
+                "></iframe>
+            </div>
+        </div>
+
+        <div class="activity-block">
+            <input type="checkbox" id="act2-3-toggle" class="toggle-checkbox">
+            <label for="act2-3-toggle" class="activity-label">Ver Actividad 2.3</label>
+            
+            <div class="activity-content">
+                <iframe class="app-viewer" srcdoc="
+                    <!DOCTYPE html>
+                    <html lang=&quot;es&quot;>
+                    <head>
+                        <meta charset=&quot;UTF-8&quot;>
+                        <title>Calculadora Simple</title>
+                        <style>
+                            body { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #a02a61; margin: 0; font-family: Arial, sans-serif; }
+                            .calculadora { background-color: #6356bb; padding: 20px; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); }
+                            #display { width: 100%; height: 60px; background-color: #19121f; color: white; font-size: 2em; text-align: right; margin-bottom: 10px; border: none; padding: 10px; box-sizing: border-box; border-radius: 5px; opacity: 1; }
+                            .botones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+                            .btn { padding: 15px; font-size: 1.2em; border: none; border-radius: 5px; cursor: pointer; user-select: none; }
+                            .number, .delete { background-color: #a06ad0; color: white; }
+                            .operator { background-color: #5f2562; color: white; }
+                            .wide { grid-column: span 2; }
+                        </style>
+                    </head>
+                    <body>
+                        <div class=&quot;calculadora&quot;>
+                            <input type=&quot;text&quot; id=&quot;display&quot; value=&quot;0&quot; readonly>
+                            <div class=&quot;botones&quot;>
+                                <button class=&quot;btn clear&quot; onclick=&quot;clearDisplay()&quot;>C</button>
+                                <button class=&quot;btn operator&quot; onclick=&quot;appendOperator('/')&quot;>/</button>
+                                <button class=&quot;btn operator&quot; onclick=&quot;appendOperator('*')&quot;>*</button>
+                                <button class=&quot;btn operator&quot; onclick=&quot;calculate()&quot;>=</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('7')&quot;>7</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('8')&quot;>8</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('9')&quot;>9</button>
+                                <button class=&quot;btn operator&quot; onclick=&quot;appendOperator('-')&quot;>-</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('4')&quot;>4</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('5')&quot;>5</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('6')&quot;>6</button>
+                                <button class=&quot;btn operator&quot; onclick=&quot;appendOperator('+')&quot;>+</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('1')&quot;>1</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('2')&quot;>2</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('3')&quot;>3</button>
+                                <button class=&quot;btn number wide&quot; onclick=&quot;appendNumber('0')&quot;>0</button>
+                                <button class=&quot;btn number&quot; onclick=&quot;appendNumber('.')&quot;>.</button>
+                                <button class=&quot;btn delete&quot; onclick=&quot;deleteLast()&quot;>DEL</button>
+                            </div>
+                        </div>
+                        <script>
+                            let display = document.getElementById('display'); let currentExpression = '';
+                            function appendNumber(number) { 
+                                if (currentExpression === '0' && number !== '.') { currentExpression = number; } else { currentExpression += number; } updateDisplay(); 
+                            }
+                            function appendOperator(operator) { 
+                                const lastChar = currentExpression.slice(-1);
+                                if (['+', '-', '*', '/', '.'].includes(lastChar)) {
+                                    if (['+', '-', '*', '/'].includes(lastChar)) { currentExpression = currentExpression.slice(0, -1) + operator; }
+                                } else if (currentExpression !== '') { currentExpression += operator; } updateDisplay(); 
+                            }
+                            function calculate() { 
+                                try { 
+                                    let result = eval(currentExpression); 
+                                    currentExpression = result.toString(); 
+                                    updateDisplay(); 
+                                } catch (e) { 
+                                    currentExpression = 'Error'; 
+                                    updateDisplay(); 
+                                    setTimeout(clearDisplay, 1500); 
+                                } 
+                            }
+                            function clearDisplay() { currentExpression = '0'; updateDisplay(); }
+                            function deleteLast() { currentExpression = currentExpression.slice(0, -1); if (currentExpression === '') { currentExpression = '0'; } updateDisplay(); }
+                            function updateDisplay() { display.value = currentExpression; }
+                            clearDisplay();
+                        </script>
+                    </body>
+                    </html>
+                "></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="unidad-3" class="unit-section">
+        <h2>Unidad 3</h2>
+
+        <div class="activity-block">
+            <input type="checkbox" id="act3-7-toggle" class="toggle-checkbox">
+            <label for="act3-7-toggle" class="activity-label">▶ Actividad 3.7</label>
+            
+            <div class="activity-content job-board-app-container">
+                
+                <h3>Tablón de Trabajos</h3>
+                
+                <div class="job-board-nav">
+                    <a id="nav-list" onclick="showTab('job-list')">Ver Trabajos</a>
+                    <a id="nav-post" onclick="showTab('post-job')">Publicar Trabajo</a>
+                    <a id="nav-admin" class="admin" onclick="showTab('admin-board')">Panel Admin</a>
+                </div>
+
+                <div class="tab-content">
+                    
+                    <div id="job-list" class="p-4 bg-white border rounded shadow-sm">
+                        <h2>Tablón de Trabajos Disponibles</h2>
+                        <div id="job-list-container"></div>
+                    </div>
+
+                    <div id="post-job" class="p-4 bg-white border rounded shadow-sm">
+                        <h2>Registrar Nuevo Trabajo</h2>
+                        <form id="post-job-form">
+                            <div class="mb-3">
+                                <label class="form-label">Título del Trabajo</label>
+                                <input type="text" class="form-control" id="job-title" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Descripción</label>
+                                <textarea class="form-control" id="job-description" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tu Email (Para notificaciones)</label>
+                                <input type="email" class="form-control" id="publisher-email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Registrar Trabajo</button>
+                            <p class="mt-3 small text-muted">Nota: Este trabajo será marcado como 'Pendiente' y requerirá aprobación del administrador.</p>
+                        </form>
+                    </div>
+
+                    <div id="admin-board" class="p-4 bg-white border rounded shadow-sm">
+                        <h3 class="text-danger mb-4">Panel de Administrador (Revisión)</h3>
+                        <div id="admin-board-container"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 50px; padding: 10px; font-size: 0.8em; color: #666;">
+        Fin del Portafolio. **Publicado en un solo archivo HTML para GitHub Pages.**
+    </div>
+
+</div>
+
+<script>
+    const STORAGE_KEY = 'jobBoardData';
+    let currentTab = 'job-list'; 
+
+    function loadJobs() {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : [
+            { id: 1, title: "Diseñador UX/UI Senior", description: "Buscamos diseñador con 5+ años de experiencia en Figma.", publisherEmail: "empresaA@mail.com", status: 'aprobado', applicants: [{ id: Date.now() + 1, email: "candidato1@mail.com", name: "Ana P." }] },
+            { id: 2, title: "Desarrollador Frontend React", description: "Conocimiento en Hooks, Redux y Testing.", publisherEmail: "empresaB@mail.com", status: 'pendiente', applicants: [] }
+        ];
+    }
+
+    function saveJobs(jobs) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs));
+    }
+
+    function getJobs() {
+        return loadJobs();
+    }
+
+    function notify(recipient, subject, body) {
+        console.log(`[NOTIFICACIÓN SIMULADA] A: ${recipient} | Asunto: ${subject}`);
+        console.log(`Cuerpo: ${body}`);
+        const alertMsg = ` Notificación enviada a ${recipient}: "${subject.substring(0, 40)}..."`;
+        const container = document.querySelector('.job-board-app-container');
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-info mt-3';
+        alertDiv.innerText = alertMsg;
+        container.prepend(alertDiv);
+        setTimeout(() => alertDiv.remove(), 5000); 
+    }
+
+    function showTab(tabId) {
+        currentTab = tabId;
+
+        document.querySelectorAll('.tab-content > div').forEach(div => div.classList.remove('active'));
+        document.querySelectorAll('.job-board-nav a').forEach(a => a.classList.remove('active'));
+
+        document.getElementById(tabId).classList.add('active');
+        const navElement = document.getElementById(`nav-${tabId.replace('-', '')}`);
+        if (navElement) {
+            navElement.classList.add('active');
+        }
+
+        render();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const form = document.getElementById('post-job-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const title = document.getElementById('job-title').value;
+                const description = document.getElementById('job-description').value;
+                const publisherEmail = document.getElementById('publisher-email').value;
+
+                const jobs = getJobs();
+                const newJob = {
+                    id: Date.now(),
+                    title,
+                    description,
+                    publisherEmail,
+                    status: 'pendiente', 
+                    applicants: []
+                };
+
+                jobs.push(newJob);
+                saveJobs(jobs);
+
+                notify('admin@tablon.com', `Nuevo Trabajo Registrado: ${title}`, `El trabajo está pendiente de revisión por el administrador.`);
+                alert(`Trabajo "${title}" enviado para aprobación.`);
+
+                this.reset();
+                showTab('job-list');
+            });
+        }
+        
+        window.showTab = showTab;
+        window.handleJobApproval = handleJobApproval;
+        window.handleCandidateDecision = handleCandidateDecision;
+        
+        showTab(currentTab); 
+    });
+
+    function handleApply(jobId, jobTitle, publisherEmail, applicantName, applicantEmail) {
+        if (!applicantName || !applicantEmail) {
+            alert("Por favor, introduce tu nombre y email para postularte.");
+            return;
+        }
+
+        const jobs = getJobs();
+        const jobIndex = jobs.findIndex(j => j.id === jobId);
+
+        if (jobIndex > -1) {
+            const newApplicant = { 
+                id: Date.now() + Math.random(), 
+                email: applicantEmail, 
+                name: applicantName 
+            };
+            jobs[jobIndex].applicants.push(newApplicant);
+            saveJobs(jobs);
+            
+            notify(publisherEmail, `¡Nueva Postulación! (${jobTitle})`, `Un candidato se ha postulado a tu oferta. Revisa el Panel Admin.`);
+            alert(`Te has postulado exitosamente a "${jobTitle}".`);
+            render(); 
+        }
+    }
+
+    function handleJobApproval(jobId, newStatus) {
+        const jobs = getJobs();
+        const jobIndex = jobs.findIndex(j => j.id === jobId);
+        if (jobIndex > -1) {
+            jobs[jobIndex].status = newStatus;
+            saveJobs(jobs);
+            
+            const statusText = newStatus === 'aprobado' ? 'APROBADO' : 'RECHAZADO';
+            notify(jobs[jobIndex].publisherEmail, `Tu Trabajo ha sido ${statusText}`, `Tu oferta "${jobs[jobIndex].title}" ha sido ${statusText}.`);
+            
+            render();
+            alert(`Trabajo actualizado a: ${statusText}`);
+        }
+    }
+
+    function handleCandidateDecision(jobId, candidateId, status) {
+        const jobs = getJobs();
+        const job = jobs.find(j => j.id === jobId);
+        
+        if (job) {
+            const applicantIndex = job.applicants.findIndex(a => a.id === candidateId);
+            if (applicantIndex > -1) {
+                const applicant = job.applicants[applicantIndex];
+                
+                const statusText = status === 'aceptado' ? 'ACEPTADA. ¡Felicidades!' : 'RECHAZADA.';
+                notify(applicant.email, `Actualización de Postulación: ${job.title}`, 
+                    `Hola ${applicant.name}, tu postulación ha sido ${statusText}`);
+                
+                job.applicants.splice(applicantIndex, 1);
+                saveJobs(jobs);
+                render();
+                alert(`Candidato ${applicant.name} notificado como: ${statusText}`);
+            }
+        }
+    }
+
+    function renderJobList() {
+        const jobs = getJobs();
+        const approvedJobs = jobs.filter(job => job.status === 'aprobado');
+        const container = document.getElementById('job-list-container');
+        if (!container) return; 
+
+        container.innerHTML = ''; 
+
+        if (approvedJobs.length === 0) {
+            container.innerHTML = '<p class="text-center text-muted mt-4">No hay trabajos aprobados para mostrar.</p>';
+            return;
+        }
+
+        approvedJobs.forEach(job => {
+            const jobCard = document.createElement('div');
+            jobCard.className = 'card mb-4 shadow-sm border-success';
+            
+            const cardHTML = `
+                <div class="card-body">
+                    <h5 class="card-title text-primary">${job.title}</h5>
+                    <p class="card-text">${job.description}</p>
+                    <p class="small text-muted">Publicado por: ${job.publisherEmail}</p>
+
+                    <h6 class="mt-3">Postularse:</h6>
+                    <form class="apply-form" id="apply-form-${job.id}">
+                        <input type="text" class="form-control mb-2" placeholder="Tu Nombre" name="applicantName" required />
+                        <input type="email" class="form-control mb-2" placeholder="Tu Email" name="applicantEmail" required />
+                        <button type="submit" class="btn btn-success btn-sm">Postularme</button>
+                    </form>
+                </div>
+            `;
+            jobCard.innerHTML = cardHTML;
+            container.appendChild(jobCard);
+
+            const form = document.getElementById(`apply-form-${job.id}`);
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const applicantName = this.querySelector('input[name="applicantName"]').value;
+                const applicantEmail = this.querySelector('input[name="applicantEmail"]').value;
+                
+                handleApply(job.id, job.title, job.publisherEmail, applicantName, applicantEmail);
+            });
+        });
+    }
+
+    function renderAdminBoard() {
+        const jobs = getJobs();
+        const container = document.getElementById('admin-board-container');
+        if (!container) return; 
+        
+        container.innerHTML = ''; 
+
+        if (jobs.length === 0) {
+            container.innerHTML = '<p class="text-center text-muted mt-4">No hay trabajos registrados.</p>';
+            return;
+        }
+
+        jobs.forEach(job => {
+            const isPending = job.status === 'pendiente';
+            const statusClass = isPending ? 'warning' : (job.status === 'aprobado' ? 'success' : 'danger');
+            
+            let applicantsHTML = '';
+            if (job.applicants.length > 0) {
+                applicantsHTML = `
+                    <h6>Postulantes en espera (${job.applicants.length}):</h6>
+                    <ul class="list-group">
+                        ${job.applicants.map(applicant => `
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>${applicant.name} (${applicant.email})</div>
+                                <div>
+                                    <button class="btn btn-info btn-sm me-2" onclick="handleCandidateDecision(${job.id}, ${applicant.id}, 'aceptado')">Aceptar</button>
+                                    <button class="btn btn-secondary btn-sm" onclick="handleCandidateDecision(${job.id}, ${applicant.id}, 'rechazado')">Rechazar</button>
+                                </div>
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+            } else {
+                applicantsHTML = '<p class="small text-muted">No hay postulantes nuevos.</p>';
+            }
+
+            const jobCard = document.createElement('div');
+            jobCard.className = `card mb-4 border-${statusClass}`;
+            
+            const headerBgClass = isPending ? 'bg-warning text-dark' : (job.status === 'aprobado' ? 'bg-success text-white' : 'bg-danger text-white');
+
+            jobCard.innerHTML = `
+                <div class="card-header ${headerBgClass}">
+                    <h5 class="mb-0">${job.title} 
+                        <span class="badge ms-3 bg-dark">${job.status.toUpperCase()}</span>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p>${job.description}</p>
+                    <p class="small text-muted">Email Publicador: ${job.publisherEmail}</p>
+
+                    ${isPending ? `
+                        <div class="mb-3">
+                            <button class="btn btn-success btn-sm me-2" onclick="handleJobApproval(${job.id}, 'aprobado')">Aprobar Trabajo</button>
+                            <button class="btn btn-danger btn-sm" onclick="handleJobApproval(${job.id}, 'rechazado')">Rechazar Trabajo</button>
+                        </div>
+                    ` : `<p class='small text-success'>Trabajo en estado ${job.status}.</p>`}
+
+                    <div class="mt-4">
+                        ${applicantsHTML}
+                    </div>
+                </div>
+            `;
+            container.appendChild(jobCard);
+        });
+    }
+
+    function render() {
+        if (currentTab === 'job-list') {
+            renderJobList();
+        } else if (currentTab === 'admin-board') {
+            renderAdminBoard();
+        }
+    }
+</script>
+</body>
+</html>
